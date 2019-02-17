@@ -1,14 +1,13 @@
 const state = {
-  main: 1
+  inputVisible: false
 }
 
 const mutations = {
-  DECREMENT_MAIN_COUNTER (state) {
-    state.main--
+  SHOW_INPUT_DIALOG (state) {
+    state.inputVisible = true
   },
-  INCREMENT_MAIN_COUNTER (state) {
-    console.log(123)
-    state.main++
+  Hide_INPUT_DIALOG (state) {
+    state.inputVisible = false
   }
 }
 
