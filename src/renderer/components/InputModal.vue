@@ -20,7 +20,7 @@
 <script>
   import {mapMutations} from 'vuex'
   const clipboard = require('electron').clipboard
-
+  const rules = require('../../../static/rules')
   export default {
     name: 'input-modal',
     data () {
@@ -43,7 +43,9 @@
         this.hideHandler()
       },
       replaceFun () {
-        this.content.replace()
+        for (let key in rules) {
+          this.content = this.content.replace(new RegExp(key, 'g'), rules[key])
+        }
       }
     },
     mounted () {
