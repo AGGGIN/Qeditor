@@ -1,5 +1,5 @@
 <template>
-  <div class="p-doc">
+  <div class="p-project">
   </div>
 </template>
 
@@ -9,15 +9,12 @@
       return {
         text: ''
       }
-    },
-    mounted () {
-      console.log(this.$db)
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .p-doc{
+  .p-project {
   
   }
 </style>

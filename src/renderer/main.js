@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import db from './datastore'
 
 import BootstrapVue from 'bootstrap-vue'
 
@@ -14,6 +15,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
+Vue.prototype.$db = db
 Vue.use(BootstrapVue)
 
 /* eslint-disable no-new */

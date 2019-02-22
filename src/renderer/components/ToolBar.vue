@@ -1,13 +1,14 @@
 <template>
   <div class="toolbar">
     <i @click="showInputDialog" class="fas fa-plus"></i>
-    <b-button-group size="sm">
+    <b-button-group size="sm" v-show="false">
       <b-button @click="copyTxt(text)"
                 :key="index"
                 v-for="(text, index) in textSet">
         {{text}}
       </b-button>
     </b-button-group>
+    <i class="fas fa-times" v-if="$route.name !== 'index'"></i>
   </div>
 </template>
 
@@ -41,10 +42,14 @@
     padding: 10px;
     box-shadow: 3px 3px 5px #eee;
     line-height: 40px;
-    
-    .fa-plus {
+    i{
       cursor: pointer;
+    }
+    .fa-plus {
       color: orange;
+    }
+    .fa-times{
+      color: red;
     }
   }
 </style>

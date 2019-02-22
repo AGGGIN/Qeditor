@@ -10,6 +10,16 @@ export default new Router({
       name: 'index',
       component: require('@/views/index').default
     },
+    // {
+    //   path: '/',
+    //   name: index,
+    //   component: require('@/views/project').default
+    // },
+    {
+      path: '/content',
+      name: 'index',
+      component: require('@/views/content').default
+    },
     {
       path: '*',
       redirect: '/'

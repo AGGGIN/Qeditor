@@ -3,7 +3,7 @@
     <div class="g-tool-bar">
       <tool-bar></tool-bar>
     </div>
-    <div class="main">
+    <div class="main" v-if="false">
       <template v-for="(text, index) in aDoc">
         <b-form-textarea
                 :key="index"
@@ -13,6 +13,9 @@
                 v-model="aDoc[index]"
         />
       </template>
+    </div>
+    <div class="main">
+      <router-view></router-view>
     </div>
     <input-modal @save="doc2arr" v-if="showDialog"></input-modal>
   </div>
@@ -25,7 +28,7 @@
   import {mapState} from 'vuex'
 
   export default {
-    name: 'qedit',
+    name: 'qeditor',
     data () {
       return {
         aDoc: []
