@@ -21,8 +21,7 @@
 
 <script>
   import {mapMutations} from 'vuex'
-  const rules = require('../../../static/rules')
-  const clipboard = require('electron').clipboard
+  const rules = require('../assets/rules')
   export default {
     name: 'input-modal',
     data () {
@@ -33,9 +32,6 @@
     },
     methods: {
       ...mapMutations(['hideInputDialog']),
-      copyTxt (text) {
-        clipboard.writeText(text)
-      },
       hideHandler () {
         this.$refs.inputModal.hide()
         setTimeout(() => {

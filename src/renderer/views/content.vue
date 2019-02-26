@@ -43,10 +43,13 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .p-content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
     textarea.form-control {
-      margin: 5px 0;
+      margin-bottom: 10px;
       border: none;
       line-height: 28px;
     }

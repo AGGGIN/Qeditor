@@ -12,24 +12,23 @@
       <b-dropdown-item @click="$router.push('config')">设置</b-dropdown-item>
     </b-dropdown>
     
-    <div class="g-quick-cp" v-if="false">
+    <div class="g-quick-cp" v-if="showQC">
+      <span class="arrow"></span>
       <b-button-group size="sm">
         <b-button :key="index "
+                  variant="outline-success"
                   @click="copyTxt(text)"
                   v-for="(text, index) in textSet">
           {{text}}
         </b-button>
       </b-button-group>
     </div>
-    <router-link to="index">
-      <i class="fas fa-times" v-if="$route.name !== 'index'"></i>
-    </router-link>
+    <i class="fas fa-times" @click="closeHandle" v-if="$route.name !== 'index'"></i>
   </div>
 </template>
 
 <script>
   import {mapMutations} from 'vuex'
-
   const clipboard = require('electron').clipboard
 
   export default {
@@ -45,6 +44,10 @@
       ...mapMutations(['showInputDialog']),
       copyTxt (text) {
         clipboard.writeText(text)
+      },
+      closeHandle () {
+        this.$store.commit('addDoc')
+        this.$router.push('index')
       }
     }
   }
@@ -55,10 +58,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
     padding: 5px 10px;
     box-shadow: 3px 3px 5px #eee;
     height: 40px;
+    
     i {
       cursor: pointer;
       font-size: 20px;
@@ -71,6 +74,7 @@
     .fa-times {
       color: red;
     }
+    
     .dropdown-item {
       padding: 5px 20px;
       font-size: 12px;
@@ -86,7 +90,13 @@
       border: none;
       box-shadow: 0px 0px 5px orange;
     }
-    
+    .g-quick-cp{
+      position: absolute;
+      left: 50px;
+      .arrow{
+        border-color: transparent green transparent transparent;
+      }
+    }
     .arrow {
       position: absolute;
       left: -5px;
@@ -96,6 +106,7 @@
       border-width: 6px 6px 6px 0;
       border-style: solid;
       border-color: transparent orange transparent transparent;
+      
       &:before {
         content: '';
         position: absolute;

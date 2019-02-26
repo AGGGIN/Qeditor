@@ -4,7 +4,7 @@
       <tool-bar></tool-bar>
     </div>
     <div class="main">
-      <router-view></router-view>
+      <router-view style="padding: 10px"></router-view>
     </div>
     <input-modal @save="doc2arr" v-if="showDialog"></input-modal>
   </div>
@@ -59,7 +59,7 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: auto;
-    padding: 60px 10px;
+    padding-top: 40px;
+    overflow: hidden;
   }
 </style>

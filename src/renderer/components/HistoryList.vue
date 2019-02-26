@@ -40,7 +40,7 @@
       </b-list-group-item>
     </b-list-group>
     <div class="empty" v-if="docList.length === 0">
-      <img src="/static/images/null.svg" alt="">
+      <img src="../assets/images/null.svg" alt="">
       <h4>什么都没有</h4>
     </div>
   </div>
@@ -105,8 +105,8 @@
         this.$router.push('content')
       }
     },
-    mounted () {
-      this.$db.find({type: 'doc'}, (err, ret) => {
+    created () {
+      this.$db.find({type: 'doc'}).sort({date: -1}).exec((err, ret) => {
         if (err) throw err
         if (ret.length) {
           ret.map((item) => {

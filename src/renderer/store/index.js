@@ -14,6 +14,7 @@ export default new Vuex.Store({
     nowDoc: {
       content: '',
       date: '',
+      _id: '',
       title: ''
     }
   },
@@ -25,10 +26,17 @@ export default new Vuex.Store({
       state.inputDialogVisible = false
     },
     addDoc (state, oDoc) {
-      db.insert(oDoc, (err, ret) => {
-        if (err) throw err
-      })
-      state.nowDoc = oDoc
+      if (!oDoc) {
+        db.update({_id: state.nowDoc._id}, {$set: {date: Date.now()}}, {},
+          (err, ret) => {
+            if (err) throw err
+          })
+      } else {
+        db.insert(oDoc, (err, ret) => {
+          if (err) throw err
+        })
+        state.nowDoc = oDoc
+      }
     },
     setNowDoc (state, doc) {
       state.nowDoc = doc
