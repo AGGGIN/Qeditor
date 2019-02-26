@@ -1,10 +1,12 @@
 <template>
-  <div class="p-index">
+  <div class="p-config">
+  
   </div>
 </template>
 
 <script>
   export default {
+    name: 'config',
     data () {
       return {
         text: ''
@@ -14,6 +16,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .p-doc{
+  .p-config{
   }
 </style>

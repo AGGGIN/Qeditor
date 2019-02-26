@@ -3,17 +3,6 @@
     <div class="g-tool-bar">
       <tool-bar></tool-bar>
     </div>
-    <div class="main" v-if="false">
-      <template v-for="(text, index) in aDoc">
-        <b-form-textarea
-                :key="index"
-                :no-resize="true"
-                @click.native="copyAll($event)"
-                v-if="aDoc[index]"
-                v-model="aDoc[index]"
-        />
-      </template>
-    </div>
     <div class="main">
       <router-view></router-view>
     </div>
@@ -64,11 +53,6 @@
     width: 100%;
     z-index: 99;
     background-color: #fff;
-  }
-  
-  textarea.form-control {
-    margin: 10px 0;
-    border: none;
   }
   
   .main {

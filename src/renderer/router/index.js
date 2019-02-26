@@ -16,8 +16,13 @@ export default new Router({
     //   component: require('@/views/project').default
     // },
     {
+      path: '/config',
+      name: 'config',
+      component: require('@/views/config').default
+    },
+    {
       path: '/content',
-      name: 'index',
+      name: 'content',
       component: require('@/views/content').default
     },
     {

@@ -1,23 +1,26 @@
 <template>
-  <div class="p-doc">
+  <div class="p-index">
+    <history-list></history-list>
   </div>
 </template>
 
 <script>
+  import HistoryList from '@/components/HistoryList'
   export default {
     data () {
       return {
         text: ''
       }
     },
+    components: {
+      HistoryList
+    },
     mounted () {
-      console.log(this.$db)
     }
   }
 </script>
 
-<style lang="scss" scoped>
-  .p-doc{
-  
+<style lang="scss">
+  .p-index{
   }
 </style>
