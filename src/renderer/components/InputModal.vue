@@ -3,6 +3,7 @@
     <b-modal :centered="true" :visible="true"
              id="modal-tall"
              ref="inputModal"
+             @hidden="hideHandler"
              :no-close-on-esc="true"
              scrollable title="插入文本">
       <div class="modal-box">
