@@ -67,6 +67,7 @@
     "bootstrap-vue": "^2.0.0-rc.13",
     "dayjs": "^1.8.8",
     "js-yaml": "^3.12.1",
+    "mousetrap": "^1.6.2",
     "nedb": "^1.8.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",

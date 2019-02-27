@@ -1,34 +1,37 @@
 <template>
   <div class="toolbar">
-    
     <!--加号菜单-->
     <b-dropdown dropright no-caret size="sm" variant="link">
       <template slot="button-content">
-        <i class="fas fa-plus"></i>
+        <i style="cursor: pointer;" class="fas fa-plus"></i>
       </template>
       <span class="arrow"></span>
       <b-dropdown-item @click="showInputDialog">添加新文本</b-dropdown-item>
       <b-dropdown-item @click="showQC=!showQC">显示/隐藏快速复制</b-dropdown-item>
       <b-dropdown-item @click="$router.push('config')">设置</b-dropdown-item>
+      <b-dropdown-item @click="closeSoft">退出</b-dropdown-item>
     </b-dropdown>
-    
+    <div class="drag-area" style="-webkit-app-region: drag;"></div>
     <div class="g-quick-cp" v-if="showQC">
       <span class="arrow"></span>
       <b-button-group size="sm">
         <b-button :key="index "
-                  variant="outline-success"
                   @click="copyTxt(text)"
-                  v-for="(text, index) in textSet">
+                  v-for="(text, index) in textSet"
+                  variant="outline-success">
           {{text}}
         </b-button>
       </b-button-group>
     </div>
-    <i class="fas fa-times" @click="closeHandle" v-if="$route.name !== 'index'"></i>
+    <i @click="closeHandle" class="fas fa-times" v-if="$route.name !== 'index'"></i>
   </div>
 </template>
 
 <script>
   import {mapMutations} from 'vuex'
+
+  const ipc = require('electron').ipcRenderer
+
   const clipboard = require('electron').clipboard
 
   export default {
@@ -48,6 +51,9 @@
       closeHandle () {
         this.$store.commit('addDoc')
         this.$router.push('index')
+      },
+      closeSoft () {
+        ipc.send('window-close')
       }
     }
   }
@@ -61,10 +67,18 @@
     padding: 5px 10px;
     box-shadow: 3px 3px 5px #eee;
     height: 40px;
+    .drag-area{
+      width: 100%;
+      height: 100%;
+      -webkit-app-region: drag;
+    }
     
     i {
       cursor: pointer;
       font-size: 20px;
+    }
+    .btn-group{
+      cursor: pointer;
     }
     
     .fa-plus {
@@ -72,6 +86,7 @@
     }
     
     .fa-times {
+      padding: 4px 8px;
       color: red;
     }
     
@@ -90,13 +105,16 @@
       border: none;
       box-shadow: 0px 0px 5px orange;
     }
-    .g-quick-cp{
+    
+    .g-quick-cp {
       position: absolute;
       left: 50px;
-      .arrow{
+      
+      .arrow {
         border-color: transparent green transparent transparent;
       }
     }
+    
     .arrow {
       position: absolute;
       left: -5px;

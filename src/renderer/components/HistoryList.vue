@@ -1,7 +1,7 @@
 <template>
   <div class="c-history">
     <div class="title">
-      <h5>最近打开</h5>
+      <h5 v-if="docList.length">最近打开</h5>
       <b-button size="lg"
                 v-if="docList.length"
                 v-b-modal.modal-delConfirm
@@ -9,7 +9,9 @@
         <i class="fas fa-backspace"></i>
       </b-button>
     </div>
-    <b-modal id="modal-delConfirm" @ok="deleteAll" title="认真的吗" >
+    <b-modal id="modal-delConfirm" cancel-title="不了"
+             ok-title="好的"
+             @ok="deleteAll" title="认真的吗" >
       <p class="my-4">确定要删除所有的文档吗？</p>
     </b-modal>
     <b-list-group class="list">

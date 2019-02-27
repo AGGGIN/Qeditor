@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import {app, BrowserWindow, ipcMain, Menu} from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -19,10 +19,40 @@ function createWindow () {
   /**
    * Initial window options
    */
+  if (process.platform === 'darwin') {
+    const template = [
+      {
+        label: 'Application',
+        submenu: [
+          {
+            label: 'Quit',
+            accelerator: 'Command+Q',
+            click () { app.quit() }
+          }
+        ]
+      },
+      {
+        label: '编辑',
+        submenu: [
+          {label: '剪切', accelerator: 'CmdOrCtrl+X', role: 'cut'},
+          {label: '复制', accelerator: 'CmdOrCtrl+C', selector: 'copy:'},
+          {label: '粘贴', accelerator: 'CmdOrCtrl+V', selector: 'paste:'},
+          {label: '全选', accelerator: 'CmdOrCtrl+A', role: 'selectall'},
+          {label: '撤销', accelerator: 'CmdOrCtrl+Z', role: 'undo'},
+          {label: '重做', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo'}
+        ]
+      }
+    ]
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+  } else {
+    Menu.setApplicationMenu(null)
+  }
+
   mainWindow = new BrowserWindow({
     height: 600,
     useContentSize: true,
-    width: 1000
+    width: 1000,
+    frame: false
   })
 
   mainWindow.loadURL(winURL)
@@ -44,4 +74,8 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+ipcMain.on('window-close', () => {
+  mainWindow.close()
 })
