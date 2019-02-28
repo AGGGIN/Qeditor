@@ -5206,6 +5206,11 @@ hoek@2.x.x:
   resolved "http://registry.npm.znlerp.cn/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
   integrity sha1-ILt0A9POo5jpHcRxCo/xuCdKJe0=
 
+hoek@^6.1.2:
+  version "6.1.2"
+  resolved "http://registry.npm.znlerp.cn/hoek/-/hoek-6.1.2.tgz#99e6d070561839de74ee427b61aa476bd6bddfd6"
+  integrity sha1-mebQcFYYOd507kJ7YapHa9a939Y=
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.znlerp.cn/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -10144,6 +10149,11 @@ timers-browserify@^2.0.4:
   integrity sha1-HSjj0qrfHVpZlsTp+VYBzQU0gK4=
   dependencies:
     setimmediate "^1.0.4"
+
+timespan@2.2.0:
+  version "2.2.0"
+  resolved "http://registry.npm.znlerp.cn/timespan/-/timespan-2.2.0.tgz#964c59c0dd92169656bc1648c9f2ddb652f5010a"
+  integrity sha1-lkxZwN2SFpZWvBZIyfLdtlL1AQo=
 
 timespan@2.3.x:
   version "2.3.0"
