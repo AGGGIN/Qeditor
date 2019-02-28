@@ -79,3 +79,10 @@ app.on('activate', () => {
 ipcMain.on('window-close', () => {
   mainWindow.close()
 })
+
+ipcMain.on('ondragstart', (event, filePath) => {
+  event.sender.startDrag({
+    file: filePath,
+    icon: '/path/to/icon.png'
+  })
+})

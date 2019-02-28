@@ -8,6 +8,8 @@
       <span class="arrow"></span>
       <b-dropdown-item @click="showInputDialog">添加新文本</b-dropdown-item>
       <b-dropdown-item @click="showQC=!showQC">显示/隐藏快速复制</b-dropdown-item>
+      <b-dropdown-item v-if="$route.name === 'content'"
+                       @click="replaceTxt">执行替换符号脚本</b-dropdown-item>
       <b-dropdown-item @click="closeSoft">退出</b-dropdown-item>
     </b-dropdown>
     <div class="drag-area" style="-webkit-app-region: drag;"></div>
@@ -42,7 +44,7 @@
       }
     },
     methods: {
-      ...mapMutations(['showInputDialog']),
+      ...mapMutations(['showInputDialog', 'replaceTxt']),
       copyTxt (text) {
         clipboard.writeText(text)
       },

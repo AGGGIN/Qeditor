@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import db from '../datastore'
+const rules = require('../assets/rules')
 
 // import { createPersistedState, createSharedMutations } from 'vuex-electron'
 //
@@ -37,6 +38,13 @@ export default new Vuex.Store({
         })
         state.nowDoc = oDoc
       }
+    },
+    replaceTxt (state) {
+      let content = state.nowDoc.content
+      for (let key in rules) {
+        content = content.replace(new RegExp(key, 'g'), rules[key])
+      }
+      state.nowDoc.content = content
     },
     setNowDoc (state, doc) {
       state.nowDoc = doc

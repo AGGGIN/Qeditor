@@ -1,6 +1,6 @@
 <template>
   <div class="m-input-modal">
-    <b-modal :centered="true" :visible="true"
+    <b-modal :centered="true" :visible="showDialog"
              id="modal-tall"
              ref="inputModal"
              @hidden="hideHandler"
@@ -13,16 +13,14 @@
       </div>
       <input class="title-input" placeholder="输入标题" slot="modal-title" type="text" v-model="title">
       <div class="footer" slot="modal-footer">
-        <b-button @click="replaceTxt">执行脚本</b-button>
-        <b-button @click="saveDoc" variant="primary">保存文档</b-button>
+        <b-button @click="saveDoc" variant="primary">OK</b-button>
       </div>
     </b-modal>
   </div>
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
-  const rules = require('../assets/rules')
+  import {mapMutations, mapState} from 'vuex'
   export default {
     name: 'input-modal',
     data () {
@@ -30,6 +28,11 @@
         content: '',
         title: ''
       }
+    },
+    computed: {
+      ...mapState({
+        showDialog: state => state.inputDialogVisible
+      })
     },
     methods: {
       ...mapMutations(['hideInputDialog']),
@@ -39,15 +42,11 @@
           this.hideInputDialog()
         }, 500)
       },
-      replaceTxt () {
-        for (let key in rules) {
-          this.content = this.content.replace(new RegExp(key, 'g'), rules[key])
-        }
-      },
-      saveDoc () {
+      saveDoc (content, title) {
+        console.log(title, 'title')
         this.$store.commit('addDoc', {
-          title: this.title,
-          content: this.content,
+          title: title || this.title,
+          content: content || this.content,
           type: 'doc',
           date: Date.now()
         })

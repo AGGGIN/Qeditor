@@ -509,7 +509,7 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argparse@^1.0.7:
+argparse@^1.0.7, argparse@~1.0.3:
   version "1.0.10"
   resolved "http://registry.npm.znlerp.cn/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
   integrity sha1-vNZ5HqWuCXJeF+WtmIE0zUCz2RE=
@@ -1817,6 +1817,11 @@ bluebird@^3.1.1, bluebird@^3.3.0, bluebird@^3.5.0, bluebird@^3.5.1, bluebird@^3.
   resolved "http://registry.npm.znlerp.cn/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha1-fQHG+WFsmlGrD4xUmnnf5uwz76c=
 
+bluebird@~3.4.0:
+  version "3.4.7"
+  resolved "http://registry.npm.znlerp.cn/bluebird/-/bluebird-3.4.7.tgz#f72d760be09b7f76d08ed8fae98b289a8d05fab3"
+  integrity sha1-9y12C+Cbf3bQjtj66Ysomo0F+rM=
+
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
   resolved "http://registry.npm.znlerp.cn/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
@@ -1861,6 +1866,13 @@ boom@2.x.x:
   integrity sha1-OciRjO/1eZ+D+UkqhI9iWt0Mdm8=
   dependencies:
     hoek "2.x.x"
+
+boom@7.x.x:
+  version "7.3.0"
+  resolved "http://registry.npm.znlerp.cn/boom/-/boom-7.3.0.tgz#733a6d956d33b0b1999da3fe6c12996950d017b9"
+  integrity sha1-czptlW0zsLGZnaP+bBKZaVDQF7k=
+  dependencies:
+    hoek "6.x.x"
 
 bootstrap-vue@^2.0.0-rc.13:
   version "2.0.0-rc.13"
@@ -2951,6 +2963,13 @@ cryptiles@2.x.x:
   dependencies:
     boom "2.x.x"
 
+cryptiles@^4.1.3:
+  version "4.1.3"
+  resolved "http://registry.npm.znlerp.cn/cryptiles/-/cryptiles-4.1.3.tgz#2461d3390ea0b82c643a6ba79f0ed491b0934c25"
+  integrity sha1-JGHTOQ6guCxkOmunnw7UkbCTTCU=
+  dependencies:
+    boom "7.x.x"
+
 crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "http://registry.npm.znlerp.cn/crypto-browserify/-/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"
@@ -3527,6 +3546,13 @@ double-ended-queue@^2.1.0-0:
   version "2.1.0-0"
   resolved "http://registry.npm.znlerp.cn/double-ended-queue/-/double-ended-queue-2.1.0-0.tgz#103d3527fd31528f40188130c841efdd78264e5c"
   integrity sha1-ED01J/0xUo9AGIEwyEHv3XgmTlw=
+
+duck@~0.1.11:
+  version "0.1.11"
+  resolved "http://registry.npm.znlerp.cn/duck/-/duck-0.1.11.tgz#3adc1a3d2fbdd5879ffd3bda05ce0f69355e9093"
+  integrity sha1-OtwaPS+91Yef/TvaBc4PaTVekJM=
+  dependencies:
+    underscore "~1.4.4"
 
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.7.1"
@@ -5206,7 +5232,7 @@ hoek@2.x.x:
   resolved "http://registry.npm.znlerp.cn/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
   integrity sha1-ILt0A9POo5jpHcRxCo/xuCdKJe0=
 
-hoek@^6.1.2:
+hoek@6.x.x:
   version "6.1.2"
   resolved "http://registry.npm.znlerp.cn/hoek/-/hoek-6.1.2.tgz#99e6d070561839de74ee427b61aa476bd6bddfd6"
   integrity sha1-mebQcFYYOd507kJ7YapHa9a939Y=
@@ -6033,7 +6059,7 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
   resolved "http://registry.npm.znlerp.cn/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha1-GSA/tZmR35jjoocFDUZHzerzJJk=
 
-js-yaml@3.x, js-yaml@^3.12.1, js-yaml@^3.9.1:
+js-yaml@3.x, js-yaml@^3.9.1:
   version "3.12.2"
   resolved "http://registry.npm.znlerp.cn/js-yaml/-/js-yaml-3.12.2.tgz#ef1d067c5a9d9cb65bd72f285b5d8105c77f14fc"
   integrity sha1-7x0GfFqdnLZb1y8oW12BBcd/FPw=
@@ -6144,6 +6170,13 @@ jsprim@^1.2.2:
     extsprintf "1.3.0"
     json-schema "0.2.3"
     verror "1.10.0"
+
+jszip@~2.5.0:
+  version "2.5.0"
+  resolved "http://registry.npm.znlerp.cn/jszip/-/jszip-2.5.0.tgz#7444fd8551ddf3e5da7198fea0c91bc8308cc274"
+  integrity sha1-dET9hVHd8+XacZj+oMkbyDCMwnQ=
+  dependencies:
+    pako "~0.2.5"
 
 karma-chai@^0.1.0:
   version "0.1.0"
@@ -6705,6 +6738,15 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lop@~0.4.0:
+  version "0.4.0"
+  resolved "http://registry.npm.znlerp.cn/lop/-/lop-0.4.0.tgz#4f0e4384d5c4f455d0b86d254fd52a9d05593c2c"
+  integrity sha1-Tw5DhNXE9FXQuG0lT9UqnQVZPCw=
+  dependencies:
+    duck "~0.1.11"
+    option "~0.2.1"
+    underscore "~1.4.4"
+
 loud-rejection@^1.0.0, loud-rejection@^1.6.0:
   version "1.6.0"
   resolved "http://registry.npm.znlerp.cn/loud-rejection/-/loud-rejection-1.6.0.tgz#5b46f80147edee578870f086d04821cf998e551f"
@@ -6779,6 +6821,20 @@ mamacro@^0.0.3:
   version "0.0.3"
   resolved "http://registry.npm.znlerp.cn/mamacro/-/mamacro-0.0.3.tgz#ad2c9576197c9f1abf308d0787865bd975a3f3e4"
   integrity sha1-rSyVdhl8nxq/MI0Hh4Zb2XWj8+Q=
+
+mammoth@^1.4.7:
+  version "1.4.7"
+  resolved "http://registry.npm.znlerp.cn/mammoth/-/mammoth-1.4.7.tgz#c9c2e6d5d4ba6feab996c2b66f2c2c3d69acaadd"
+  integrity sha1-ycLm1dS6b+q5lsK2bywsPWmsqt0=
+  dependencies:
+    argparse "~1.0.3"
+    bluebird "~3.4.0"
+    jszip "~2.5.0"
+    lop "~0.4.0"
+    path-is-absolute "^1.0.0"
+    sax "~1.1.1"
+    underscore "~1.8.3"
+    xmlbuilder "^10.0.0"
 
 map-age-cleaner@^0.1.1:
   version "0.1.3"
@@ -7685,6 +7741,11 @@ optimist@^0.6.1, optimist@~0.6.1:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
+option@~0.2.1:
+  version "0.2.4"
+  resolved "http://registry.npm.znlerp.cn/option/-/option-0.2.4.tgz#fd475cdf98dcabb3cb397a3ba5284feb45edbfe4"
+  integrity sha1-/Udc35jcq7PLOXo7pShP60Xtv+Q=
+
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.2"
   resolved "http://registry.npm.znlerp.cn/optionator/-/optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64"
@@ -7837,6 +7898,11 @@ pac-resolver@^3.0.0:
     ip "^1.1.5"
     netmask "^1.0.6"
     thunkify "^2.1.2"
+
+pako@~0.2.5:
+  version "0.2.9"
+  resolved "http://registry.npm.znlerp.cn/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
+  integrity sha1-8/dSL073gjSNqBYbrZ7P1Rv4OnU=
 
 pako@~1.0.5:
   version "1.0.8"
@@ -9227,6 +9293,11 @@ sax@^1.2.4, sax@~1.2.1:
   resolved "http://registry.npm.znlerp.cn/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha1-KBYjTiN4vdxOU1T6tcqold9xANk=
 
+sax@~1.1.1:
+  version "1.1.6"
+  resolved "http://registry.npm.znlerp.cn/sax/-/sax-1.1.6.tgz#5d616be8a5e607d54e114afae55b7eaf2fcc3240"
+  integrity sha1-XWFr6KXmB9VOEUr65Vt+ry/MMkA=
+
 schema-utils@^0.4.5:
   version "0.4.7"
   resolved "http://registry.npm.znlerp.cn/schema-utils/-/schema-utils-0.4.7.tgz#ba74f597d2be2ea880131746ee17d0a093c68187"
@@ -10150,11 +10221,6 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-timespan@2.2.0:
-  version "2.2.0"
-  resolved "http://registry.npm.znlerp.cn/timespan/-/timespan-2.2.0.tgz#964c59c0dd92169656bc1648c9f2ddb652f5010a"
-  integrity sha1-lkxZwN2SFpZWvBZIyfLdtlL1AQo=
-
 timespan@2.3.x:
   version "2.3.0"
   resolved "http://registry.npm.znlerp.cn/timespan/-/timespan-2.3.0.tgz#4902ce040bd13d845c8f59b27e9d59bad6f39929"
@@ -10382,6 +10448,11 @@ underscore@~1.7.0:
   version "1.7.0"
   resolved "http://registry.npm.znlerp.cn/underscore/-/underscore-1.7.0.tgz#6bbaf0877500d36be34ecaa584e0db9fef035209"
   integrity sha1-a7rwh3UA02vjTsqlhODbn+8DUgk=
+
+underscore@~1.8.3:
+  version "1.8.3"
+  resolved "http://registry.npm.znlerp.cn/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
+  integrity sha1-Tz+1OxBuYJf8+ctBCfKl6b36UCI=
 
 union-value@^1.0.0:
   version "1.0.0"
@@ -11028,6 +11099,11 @@ xmlbuilder@8.2.2:
   version "8.2.2"
   resolved "http://registry.npm.znlerp.cn/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
   integrity sha1-aSSGc0ELS6QuGmE2VR0pIjNap3M=
+
+xmlbuilder@^10.0.0:
+  version "10.1.1"
+  resolved "http://registry.npm.znlerp.cn/xmlbuilder/-/xmlbuilder-10.1.1.tgz#8cae6688cc9b38d850b7c8d3c0a4161dcaf475b0"
+  integrity sha1-jK5miMybONhQt8jTwKQWHcr0dbA=
 
 xmlbuilder@^9.0.7:
   version "9.0.7"
