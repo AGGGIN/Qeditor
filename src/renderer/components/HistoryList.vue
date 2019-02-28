@@ -79,6 +79,8 @@
         })
       },
       deleteDoc (doc) {
+        console.log(doc, this.docList, 'deleteDoc')
+        this.docList.splice(this.docList.findIndex(item => item._id === doc._id), 1)
         doc.cDown = -1
         clearInterval(doc.timmer)
         this.$db.remove({_id: doc._id}, (err, ret) => {
@@ -187,7 +189,7 @@
       h4{
         margin-top: 15px;
         font-size: 30px;
-        color: #eee;
+        color: #ccc;
       }
     }
   }

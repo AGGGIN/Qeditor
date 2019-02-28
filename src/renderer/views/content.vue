@@ -6,7 +6,6 @@
             max-rows="10"
             :no-resize="true"
             @focus.native="copyAll($event)"
-            @blur.native="cleanEmpty($event)"
             v-if="aDoc[index]"
             v-model="aDoc[index]"
     />
@@ -39,12 +38,6 @@
       copyAll (event) {
         event.target.select()
         document.execCommand('copy')
-      },
-      cleanEmpty (el) {
-        if (!el.target.innerHTML) {
-          el.target = null
-        }
-        console.log('123', el.target.innerHTML)
       }
     }
   }
