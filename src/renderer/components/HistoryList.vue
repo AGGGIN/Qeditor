@@ -1,19 +1,22 @@
 <template>
   <div class="c-history">
-    <div class="title">
-      <h5 v-if="docList.length">最近打开</h5>
-      <b-button size="lg"
-                v-if="docList.length"
-                v-b-modal.modal-delConfirm
-                variant="link">
-        <i class="fas fa-backspace"></i>
-      </b-button>
+    <div class="title-box" v-if="docList.length">
+      <div class="title">
+        <h5>最近打开</h5>
+        <b-button size="lg"
+                  v-if="all.cDown > 4"
+                  @click="clickDelAll"
+                  v-b-modal.modal-delConfirm
+                  variant="link">
+          <i class="fas fa-backspace"></i>
+        </b-button>
+        <div v-else>
+          <b-button @click.stop="deleteDoc()" size="sm" variant="link">立即删除</b-button>
+          <b-button @click.stop="cancelDel()"  style="color: green" size="sm" variant="link">取消</b-button>
+        </div>
+      </div>
+      <b-progress class="all-cutdown" v-if="all.cDown <= 4" :max="4" :value="all.cDown" animated size="mini"></b-progress>
     </div>
-    <b-modal id="modal-delConfirm" cancel-title="不了"
-             ok-title="好的"
-             @ok="deleteAll" title="认真的吗" >
-      <p class="my-4">确定要删除所有的文档吗？</p>
-    </b-modal>
     <b-list-group class="list">
       <b-list-group-item :key="index"
                          @click="clickDoc(item)"
@@ -62,7 +65,11 @@
       return {
         text: '',
         docList: [],
-        MAX: MAX
+        MAX: MAX,
+        all: {
+          cDown: MAX,
+          timmer: null
+        }
       }
     },
     components: {},
@@ -72,14 +79,24 @@
       }
     },
     methods: {
+      clickDelAll () {
+        this.startCountDown()
+      },
       deleteAll () {
         this.docList = []
+        this.all = {
+          cDown: MAX,
+          timmer: null
+        }
         this.$db.remove({}, {multi: true}, (err, ret) => {
-          console.log(err, ret)
+          if (err) throw err
         })
       },
       deleteDoc (doc) {
-        console.log(doc, this.docList, 'deleteDoc')
+        if (!doc) {
+          this.deleteAll()
+          return false
+        }
         this.docList.splice(this.docList.findIndex(item => item._id === doc._id), 1)
         doc.cDown = -1
         clearInterval(doc.timmer)
@@ -88,17 +105,19 @@
         })
       },
       cancelDel (doc) {
-        doc.cDown = MAX
-        clearInterval(doc.timmer)
-        doc.timmer = null
+        let obj = doc || this.all
+        obj.cDown = MAX
+        clearInterval(obj.timmer)
+        obj.timmer = null
       },
       startCountDown (doc) {
-        doc.cDown = MAX - 1
-        doc.timmer = setInterval(() => {
-          if (doc.cDown < 0) {
-            this.deleteDoc(doc)
+        let obj = doc || this.all
+        obj.cDown = MAX - 1
+        obj.timmer = setInterval(() => {
+          if (obj.cDown <= 0) {
+            this.deleteDoc(doc ? obj : null)
           }
-          doc.cDown -= 1
+          obj.cDown -= 1
         }, 1000)
       },
       clickDoc (doc) {

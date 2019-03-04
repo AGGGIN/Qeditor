@@ -1,13 +1,15 @@
 <template>
   <div class="p-content">
     <b-form-textarea
-            v-for="(text, index) in aDoc"
             :key="index"
-            max-rows="10"
             :no-resize="true"
-            @focus.native="copyAll($event)"
-            v-if="aDoc[index]"
-            v-model="aDoc[index]"
+            @focus.native.once="smartSelect($event, item)"
+            @select="item.hasSelect && selectHandle($event, item)"
+            max-rows="20"
+            rows="1"
+            v-for="(item, index) in aDoc"
+            v-if="item.content"
+            v-model="item.content"
     />
   </div>
 </template>
@@ -28,9 +30,16 @@
           if (!state.nowDoc.content) {
             return ''
           }
-          let content = state.nowDoc.content
-          return content.split('\n\n')
-        }
+          let content = state.nowDoc.content.split('\n\n').map(item => {
+            return {
+              content: item,
+              hasSelect: false,
+              selectSlice: []
+            }
+          })
+          return content
+        },
+        autoSelect: state => state.config.autoSelect
       })
     },
     components: {},
@@ -38,6 +47,29 @@
       copyAll (event) {
         event.target.select()
         document.execCommand('copy')
+      },
+      smartSelect (event, item) {
+        // 开头单行的数字不选择
+        setTimeout(() => {
+          item.hasSelect = true
+        }, 500)
+        if (this.autoSelect === false) {
+          this.copyAll(event)
+          return true
+        }
+        let content = event.target.value
+        let line = content.split('\n')[0]
+        if (/(p)?\d+/i.test(line)) {
+          event.target.setSelectionRange(line.length + 1, content.length)
+        } else {
+          this.copyAll(event)
+        }
+      },
+      selectHandle (event, item) {
+        let start = event.target.selectionStart
+        let end = event.target.selectionEnd
+        let content = event.target.value
+        item.selectSlice.push(content.slice(start, end))
       }
     }
   }
@@ -48,6 +80,7 @@
     width: 100%;
     height: 100%;
     overflow: auto;
+    
     textarea.form-control {
       margin-bottom: 10px;
       border: none;

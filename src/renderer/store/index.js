@@ -17,6 +17,12 @@ export default new Vuex.Store({
       date: '',
       _id: '',
       title: ''
+    },
+    config: {
+      qcList: '＠＃％￥♪♡※〝〞',
+      qcOpen: false,
+      autoSelect: true,
+      autoUpdate: true
     }
   },
   mutations: {

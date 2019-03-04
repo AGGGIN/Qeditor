@@ -1,6 +1,6 @@
 <template>
   <div class="p-index">
-    <history-list></history-list>
+    <history-list class="history-list"></history-list>
   </div>
 </template>
 
@@ -22,5 +22,8 @@
 
 <style lang="scss">
   .p-index{
+    position: relative;
+    overflow: auto;
+    height: 100%;
   }
 </style>

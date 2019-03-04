@@ -10,6 +10,7 @@
       <b-dropdown-item @click="showQC=!showQC">显示/隐藏快速复制</b-dropdown-item>
       <b-dropdown-item v-if="$route.name === 'content'"
                        @click="replaceTxt">执行替换符号脚本</b-dropdown-item>
+      <b-dropdown-item @click="$router.push('config')">设置</b-dropdown-item>
       <b-dropdown-item @click="closeSoft">退出</b-dropdown-item>
     </b-dropdown>
     <div class="drag-area" style="-webkit-app-region: drag;"></div>
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
+  import {mapMutations, mapState} from 'vuex'
 
   const ipc = require('electron').ipcRenderer
 
@@ -39,9 +40,16 @@
     data () {
       return {
         text: '',
-        showQC: false,
-        textSet: ['＠', '＃', '％', '￥', '♪', '♡', '※']
+        showQC: false
       }
+    },
+    computed: {
+      ...mapState({
+        textSet: state => state.config.qcList.split('')
+      })
+    },
+    created () {
+      this.showQC = this.$store.state.config.qcOpen
     },
     methods: {
       ...mapMutations(['showInputDialog', 'replaceTxt']),
@@ -123,8 +131,8 @@
       left: 0px;
       background-color: #fff;
       border: 1px solid #eee;
-      .arrow {
-        border-color: transparent green transparent transparent;
+      button:active{
+        background-color: #eee;
       }
     }
     

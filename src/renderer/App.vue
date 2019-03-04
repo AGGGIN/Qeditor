@@ -4,6 +4,10 @@
       <tool-bar></tool-bar>
     </div>
     <div class="main" id="drag">
+      <b-alert class="tip-alert" :show="alertCountDown"
+               @dismissed="alertCountDown=0"
+               @dismiss-count-down="e => alertCountDown = e"
+               variant="warning" dismissible fade>目前只能处理纯文本和docx文件</b-alert>
       <router-view style="padding: 10px"></router-view>
     </div>
     <input-modal ref="inputModal"></input-modal>
@@ -13,29 +17,53 @@
 <script>
   import ToolBar from '@/components/ToolBar'
   import InputModal from '@/components/InputModal'
-  import AutoArea from '@/components/AutoArea'
   const path = require('path')
   const mammoth = require('mammoth')
+  const fs = require('fs')
 
   export default {
     name: 'qeditor',
     data () {
       return {
-        aDoc: []
+        aDoc: [],
+        showAlert: false,
+        alertCountDown: 0
       }
     },
     methods: {
       saveFile (filePath) {
-        mammoth.extractRawText({path: filePath}).then((result) => {
-          let content = result.value
-          content = content.replace(/\n{3}/g, '\n\n')
-          content = content.replace(/\n{2}/g, '\n')
-          const title = path.basename(filePath)
-          this.$refs.inputModal.saveDoc(content, title)
-        }).done()
+        const extname = path.extname(filePath)
+        let content = ''
+        const title = path.basename(filePath)
+        if (extname === '.docx') {
+          mammoth.extractRawText({path: filePath}).then((result) => {
+            content = result.value
+            content = content.replace(/\n{3}/g, '\n\n')
+            content = content.replace(/\n{2}/g, '\n')
+            this.$refs.inputModal.saveDoc(content, title)
+          }).done()
+        } else if (extname === '.txt') {
+          fs.readFile(filePath, 'utf-8', (err, data) => {
+            if (err) throw err
+            content = data
+            this.$refs.inputModal.saveDoc(content, title)
+          })
+        } else {
+          this.showAlert = true
+          this.alertCountDown = 3
+          return false
+        }
+      },
+      getConfig () {
+        this.$db.find({type: 'config'}).exec((err, data) => {
+          if (err) throw err
+        })
       }
     },
-    components: {ToolBar, InputModal, AutoArea},
+    created () {
+      this.getConfig()
+    },
+    components: {ToolBar, InputModal},
     mounted () {
       const area = document.getElementById('drag')
       area.ondragenter = area.ondragover = area.ondragleave = (e) => {
@@ -70,5 +98,8 @@
     height: 100vh;
     padding-top: 40px;
     overflow: hidden;
+    .tip-alert{
+      margin: 0;
+    }
   }
 </style>

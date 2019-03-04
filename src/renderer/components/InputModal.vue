@@ -13,7 +13,7 @@
       </div>
       <input class="title-input" placeholder="输入标题" slot="modal-title" type="text" v-model="title">
       <div class="footer" slot="modal-footer">
-        <b-button @click="saveDoc" variant="primary">OK</b-button>
+        <b-button @click="saveDoc()" variant="primary">OK</b-button>
       </div>
     </b-modal>
   </div>
@@ -43,7 +43,6 @@
         }, 500)
       },
       saveDoc (content, title) {
-        console.log(title, 'title')
         this.$store.commit('addDoc', {
           title: title || this.title,
           content: content || this.content,
