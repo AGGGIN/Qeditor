@@ -10,15 +10,10 @@ export default new Router({
       name: 'index',
       component: require('@/views/index').default
     },
-    // {
-    //   path: '/',
-    //   name: index,
-    //   component: require('@/views/project').default
-    // },
     {
-      path: '/config',
-      name: 'config',
-      component: require('@/views/config').default
+      path: '/set',
+      name: 'set',
+      component: require('@/views/set').default
     },
     {
       path: '/content',

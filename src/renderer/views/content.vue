@@ -4,7 +4,7 @@
             :key="index"
             :no-resize="true"
             @focus.native.once="smartSelect($event, item)"
-            @select="item.hasSelect && selectHandle($event, item)"
+            @select.native="item.hasSelect && selectHandle($event, item)"
             max-rows="20"
             rows="1"
             v-for="(item, index) in aDoc"
@@ -34,7 +34,10 @@
             return {
               content: item,
               hasSelect: false,
-              selectSlice: []
+              count: 0,
+              select: [],
+              index: [],
+              time: []
             }
           })
           return content
@@ -52,14 +55,14 @@
         // 开头单行的数字不选择
         setTimeout(() => {
           item.hasSelect = true
-        }, 500)
+        }, 30)
         if (this.autoSelect === false) {
           this.copyAll(event)
           return true
         }
         let content = event.target.value
         let line = content.split('\n')[0]
-        if (/(p)?\d+/i.test(line)) {
+        if (/^(p)?\d+$/i.test(line)) {
           event.target.setSelectionRange(line.length + 1, content.length)
         } else {
           this.copyAll(event)
@@ -68,9 +71,30 @@
       selectHandle (event, item) {
         let start = event.target.selectionStart
         let end = event.target.selectionEnd
-        let content = event.target.value
-        item.selectSlice.push(content.slice(start, end))
+        this.addRecord(item, start, end)
+      },
+      addRecord (item, start, end) {
+        item.select.push(item.content.slice(start, end))
+        item.index.push(`${start},${end}`)
+        item.time.push(Date.now())
+        item.count += 1
+        let data = {
+          count: item.count,
+          content: item.content,
+          type: 'log',
+          select: item.select,
+          time: item.time,
+          index: item.index
+        }
+        if (item.count === 1) {
+          this.$db.insert(data)
+        }
+        this.$db.update({content: item.content}, {
+          $set: data
+        })
       }
+    },
+    mounted () {
     }
   }
 </script>
