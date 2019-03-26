@@ -66,6 +66,7 @@
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.13",
     "dayjs": "^1.8.8",
+    "lodash": "^4.17.11",
     "mammoth": "^1.4.7",
     "mousetrap": "^1.6.2",
     "nedb": "^1.8.0",

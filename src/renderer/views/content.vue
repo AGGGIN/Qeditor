@@ -16,11 +16,13 @@
 
 <script>
   import {mapState} from 'vuex'
+  import _ from 'lodash'
 
   export default {
     data () {
       return {
-        text: ''
+        text: '',
+        selectReg: ''
       }
     },
     computed: {
@@ -28,11 +30,11 @@
         title: state => state.nowDoc.title,
         aDoc: state => {
           if (!state.nowDoc.content) {
-            return ''
+            return []
           }
           let content = state.nowDoc.content.split('\n\n').map(item => {
             return {
-              content: item,
+              content: _.trim(item),
               hasSelect: false,
               count: 0,
               select: [],
@@ -62,8 +64,9 @@
         }
         let content = event.target.value
         let line = content.split('\n')[0]
-        if (/^(p)?\d+$/i.test(line)) {
+        if (this.selectReg.test(line)) {
           event.target.setSelectionRange(line.length + 1, content.length)
+          document.execCommand('copy')
         } else {
           this.copyAll(event)
         }
@@ -95,6 +98,28 @@
       }
     },
     mounted () {
+      // 一个通用的表达式
+      let reg = new RegExp(/(\S+)?\s?\d+$/, 'g')
+      let regArr = []
+      this.aDoc.forEach(item => {
+        let str = item.content.split('\n')[0]
+        if (str && reg.test(str)) {
+          regArr.push(str.match(reg)[0])
+        } else {
+          return false
+        }
+      })
+      let aLike = _.groupBy(regArr, item => {
+        return item.replace(/\d+/g, '')
+      })
+      let max = 0
+      for (let key in aLike) {
+        if (aLike[key].length > max) {
+          max = aLike[key].length
+          this.selectReg = new RegExp(`^${key}\\d+`, 'i')
+        }
+      }
+      this.selectReg = this.selectReg ? this.selectReg : /\d+/
     }
   }
 </script>
